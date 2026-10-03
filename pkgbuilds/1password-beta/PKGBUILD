@@ -1,6 +1,6 @@
 pkgname=1password-beta
 
-_tarver=8.12.34-29.BETA
+_tarver=8.12.40-27.BETA
 case "${CARCH}" in
     x86_64)
         _archdir="x64"
@@ -10,7 +10,7 @@ case "${CARCH}" in
         ;;
 esac
 pkgver=${_tarver//-/_}
-pkgrel=29.1
+pkgrel=27.1
 conflicts=('1password' '1password-beta-bin')
 pkgdesc="Password manager and secure wallet"
 arch=('x86_64' 'aarch64')
@@ -22,10 +22,10 @@ source=()
 sha256sums=()
 source_x86_64=(https://downloads.1password.com/linux/tar/beta/x86_64/1password-${_tarver}.x64.tar.gz{,.sig})
 source_aarch64=(https://downloads.1password.com/linux/tar/beta/aarch64/1password-${_tarver}.arm64.tar.gz{,.sig})
-sha256sums_x86_64=('6894b283a534cf94b07903fb38966a0aab2e37f75ee3848ce340308819aadddb'
-                   '8d4df4d0a80d2be7aad7d91ad964a750c8f32db5007261045003c191690c8246')
-sha256sums_aarch64=('c77ce6ddf36dbd6054c64d91b7f644274d3218f465fd60e211d0296f6443124a'
-                    '91c7249a1cf5e7924ef2810cb0cb1b893d8a9a424b373b433f45d7aaa5a8369b')
+sha256sums_x86_64=('1327d102255b5c347e6c5e19b1a6581986446e06848015b93b5d7b10b9bc3f52'
+                   '2a19fba2b81ade500d9707a20829930d4fca972254fdc653ffa27cee57638098')
+sha256sums_aarch64=('54b14cae2a676480f3f2df7b85e42bf389d1f84207b0a4ad1e32382071625146'
+                    '3a55dc9cdee5729e4bdf6830e04d9813c11546b328003800a837df83f79e33f9')
 validpgpkeys=('3FEF9748469ADBE15DA7CA80AC2D62742012EA22')
 
 package() {
@@ -42,7 +42,7 @@ package() {
             "${pkgdir}/usr/share/icons/hicolor/${resolution}/apps/1password.png"
     done
     # Install desktop file
-    install -Dm0644 resources/1password.desktop -t "${pkgdir}"/usr/share/applications/
+    install -Dm0644 resources/com.onepassword.OnePassword.desktop -t "${pkgdir}"/usr/share/applications/
 
     # Fill in policy kit file with a list of (the first 10) human users of the system.
     export POLICY_OWNERS
@@ -65,7 +65,7 @@ EOF" > ./com.1password.1Password.policy
     # Cleanup un-needed files
     rm "${pkgdir}"/opt/1Password/com.1password.1Password.policy "${pkgdir}"/opt/1Password/com.1password.1Password.policy.tpl "${pkgdir}"/opt/1Password/install_biometrics_policy.sh
     rm -r "${pkgdir}"/opt/1Password/resources/icons/
-    rm "${pkgdir}"/opt/1Password/resources/1password.desktop "${pkgdir}"/opt/1Password/resources/custom_allowed_browsers
+    rm "${pkgdir}"/opt/1Password/resources/com.onepassword.OnePassword.desktop "${pkgdir}"/opt/1Password/resources/custom_allowed_browsers
 
     # Symlink /usr/bin executable to opt
     install -dm0755 "${pkgdir}"/usr/bin
