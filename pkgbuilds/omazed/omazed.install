@@ -6,7 +6,7 @@ post_install() {
     echo "   omazed setup"
     echo ""
     echo "   This will:"
-    echo "   • Set up omarchy hook integration (or systemd fallback)"
+    echo "   • Set up omarchy hook integration"
     echo "   • Set the Zed theme once on first run"
     echo ""
     echo "Then change your Omarchy theme and watch Zed follow along!"
@@ -17,11 +17,6 @@ post_upgrade() {
     echo ""
     echo "==> Omazed updated to $(pacman -Q omazed | cut -d' ' -f2)"
     echo ""
-    echo "   Complete the update!"
-    echo ""
-    echo "   To complete this update, run:"
-    echo ""
-    echo "   omazed setup"
     echo ""
 }
 
